@@ -134,21 +134,13 @@ void recogerItems(player *jugador)
   {
     if (strcmp(i->nombre, nombre_item) == 0)
     {
-      if (jugador->pesoTotal + i->peso <= 10) // Limite de peso
-      {
-        list_pushBack(jugador->items, i);
-        jugador->puntajeTotal += i->valor;
-        jugador->pesoTotal += i->peso;
-        jugador->tiempo_restante -= 1; // Descuenta 1 de tiempo
-        list_popCurrent(items);        // Elimina el item del escenario
-        printf("Item '%s' recogido.\n", i->nombre);
-        return;
-      }
-      else
-      {
-        printf("No puedes recoger '%s', peso total excede el limite.\n", i->nombre);
-        return;
-      }
+      list_pushBack(jugador->items, i);
+      jugador->puntajeTotal += i->valor;
+      jugador->pesoTotal += i->peso;
+      jugador->tiempo_restante -= 1; // Descuenta 1 de tiempo
+      list_popCurrent(items);        // Elimina el item del escenario
+      printf("Item '%s' recogido.\n", i->nombre);
+      return;
     }
   }
   printf("Item '%s' no encontrado en el escenario.\n", nombre_item);
